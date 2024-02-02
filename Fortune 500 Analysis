@@ -71,7 +71,7 @@ from fortune_companies
 group by industry
 
 
-#Assigned alled the companies in the Technology industry as "mother friendly workplace", "acceptable" or"abysmal" based on the maternity leave offered.
+#Assigned all the companies in the Technology industry as "mother friendly workplace", "acceptable" or"abysmal" based on the maternity leave offered.
 SELECT
 company_name,
 CASE 
