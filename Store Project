@@ -1,0 +1,33 @@
+-- in this project i created a Table called store and input all the data to run a query.
+
+Create TABLE Store (id integer PRIMARY KEY,quantity_sold integer,quantity_instock integer, item text, cost integer);
+INSERT INTO store VALUES (1,100,66, "Bread",7);
+INSERT INTO Store VALUES (2,20,4, " Ketchup", 3);
+INSERT INTO Store VALUES (3,30,12, "Apple", 4);
+INSERT INTO Store VALUES (4,200,70, "Juice box", 5);
+INSERT INTO Store VALUES (5,60,1, "Banana", 3);
+INSERT INTO Store VALUES (6,5,2, "diaper", 20);
+INSERT INTO Store VALUES (7,30,3, "ice cream", 17);
+INSERT INTO Store VALUES (8,12,14, "20lbs rice", 7);
+INSERT INTO Store VALUES (9,16,10, "cereal", 14);
+INSERT INTO Store VALUES (10,17,0, "Chicken quarters", 18);
+INSERT INTO Store VALUES (11,22,5, "Beef stew", 8);
+INSERT INTO Store VALUES (12,24,100 ,"hot dog", 10);
+INSERT INTO Store VALUES (13,55,60, "bagel", 8);
+INSERT INTO Store VALUES (14,17, 15,"toilet paper", 12);
+INSERT INTO Store VALUES (15,33,20, "cream cheese", 3);
+
+
+--Shows the quantity in stock  for each item in the store, this is use to understand the variation in stock level across different items in the stores inventory--
+Select item,quantity_instock from Store;
+
+-- Calculate summary that gives insight into the overall distribution and variation in stock levels across the store's inventory
+SELECT 
+    MIN(quantity_instock) AS min_quantity_instock,
+    MAX(quantity_instock) AS max_quantity_instock,
+    AVG(quantity_instock) AS mean_quantity_instock,
+    (SELECT quantity_instock
+     FROM Store
+     ORDER BY quantity_instock
+     LIMIT 1 OFFSET (SELECT COUNT(*) FROM Store) / 2) AS median_quantity_instock
+FROM Store;
